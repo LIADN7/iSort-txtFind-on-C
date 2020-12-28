@@ -10,6 +10,10 @@ int main(){
     char c;
     char s [LINE];
     int  len=0;
+    if(f== NULL){
+        printf("error: not succes reading from txt\n");
+        return 1;
+    }
     if(f != NULL)
     {
         do{
