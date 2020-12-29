@@ -18,7 +18,8 @@ int main(){
             *(arr+j)=num;
             j++;
         }
-    while(getchar() != '\n');
+        else
+            while(getchar() != '\n');
     }
 
     insertion_sort(arr , len);
