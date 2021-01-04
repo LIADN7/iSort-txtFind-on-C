@@ -4,9 +4,17 @@
 
 #define LINE 256
 
-int main(){
+int main(int argc, char *argv[]){
+    char* arg;
+    
+    if (argc !=2)
+        arg = "input.txt";
+    else
+        arg = argv[1];
+    
+
     FILE *f;
-    f = fopen("input.txt", "rt");
+    f = fopen(arg, "rt");
     char c;
     char s [LINE];
     int  len=0;
