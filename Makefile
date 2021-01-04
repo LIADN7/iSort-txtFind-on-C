@@ -2,18 +2,25 @@ AR=ar
 FLAGS= -Wall -g
 
 all: libmysort.a  libmytxt.a isort txtfind
-isort: libmysort.a
-	gcc $(FLAGS) -o isort libmysort.a
-txtfind: libmytxt.a
-	gcc $(FLAGS) -o txtfind libmytxt.a
-libmysort.a: isort.o
-	ar -rcs libmysort.a isort.o
-libmytxt.a: main.o
-	ar -rcs libmytxt.a main.o
-isort.o: isort.c func.c
+isort: isort.o libmysort.a
+	gcc $(FLAGS) -o isort isort.o libmysort.a
+txtfind: txt.o libmytxt.a
+	gcc $(FLAGS) -o txtfind txt.o libmytxt.a
+libmysort.a: funcSort.o
+	ar -rcs libmysort.a funcSort.o
+libmytxt.a: funcTxt.o
+	ar -rcs libmytxt.a funcTxt.o
+isort.o: isort.c funcSort.h
 	gcc $(FLAGS) -c isort.c
-main.o: main.c funcTxt.c
-	gcc $(FLAGS) -c main.c
+funcSort.o: funcSort.c funcSort.h
+	gcc $(FLAGS) -c funcSort.c
+txt.o: txt.c funcTxt.h
+	gcc $(FLAGS) -c txt.c
+funcTxt.o: funcTxt.c funcTxt.h
+	gcc $(FLAGS) -c funcTxt.c
+
+
+
 
 .PHONY: clean all
 

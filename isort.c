@@ -1,12 +1,9 @@
 #include <stdio.h>
-#include "func.c"
 #include <stdlib.h>
-
+#include "funcSort.h"
 
 #define len 50
 static int arr[len];
-
-
 
 int main(){
     int num;
