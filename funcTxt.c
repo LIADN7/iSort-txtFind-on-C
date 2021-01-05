@@ -11,7 +11,7 @@ bool findSimi(char* s1, char* s2)
     int lens1,lens2, cont=0;
     lens1=strlen(s1);
     lens2=strlen(s2);
-    if(lens1>lens2||lens1<lens2-1)
+    if(lens1>lens2)
         return false;
     
     for(int i=0;i<lens2;i++)
@@ -19,7 +19,7 @@ bool findSimi(char* s1, char* s2)
         if(*(s1+cont)==*(s2+i))
             cont++;
     }
-    bool flag = (cont==lens1);
+    bool flag = (cont==lens1 && (cont == lens2-1 || cont == lens2));
     return flag;
 }
 
@@ -48,6 +48,7 @@ bool findSame(char* s1, char* s2)
 void b(char* s, char* fil)
 {
     int fillen = strlen(fil);
+    fil[fillen-2] = '\n';
     for(int j=0; j<fillen;j++)
     {
         char c [LINE];
@@ -66,25 +67,29 @@ void b(char* s, char* fil)
     }
 }
 
-void a(char* user, char *txt)
+void a(char* user, char *line)
 {
-    int lentxt = strlen(txt);
-    bool flag = true;
-    for(int i = 0 ; i < lentxt && flag ; i++)
-    {
-        char s [256];
-        int index = 0;
-        while(*(txt+i) != '\n' && *(txt+i) != ' ' )
+    int lentxt = strlen(line);
+    char s[LINE];
+    char c;
+    int len = 0;
+    bool flag = false;
+    int i;
+    line[lentxt-2] = ' ';
+    for(i = 0 ; i < lentxt-1 && !flag ; i++)
+    {   
+        c = line[i];
+        s[len] = c;
+        len++;
+        if(c == ' ')
         {
-            *(s+index) = *(txt+i);
-            i++;
-            index++;
+            s[len]='\0';               
+            len=0;
+            if(findSame(user, s))
+            {
+                printf("%s", line);
+                flag = true;
+            }       
         }
-        s[index]='\0';
-        if(findSame(user,s))
-        {
-            printf("%s" , txt);
-            flag = false;
-        } 
     }
 }
