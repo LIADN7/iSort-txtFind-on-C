@@ -2,6 +2,7 @@ insertion sort and txt find in C language.
 
     *   insertion sort:
 
+
 *   The function sorts 50 numbers from the smallest to the largest by an algorithm "insertion sort" -> O(n^2).
     
     Procedure:
@@ -25,3 +26,10 @@ The running time is O(n) (n is the size of the characters in the text)
     2) The first word is the word to search and after is the character of which action to take.
     3) If the character is 'a' the program print all the lines in the text in which the string appears.
     4) If the character is 'b' the program print all the words in the text that resemble a string to the point of omitting one letter from the word.
+
+
+
+
+**[@authors liadn7](https://github.com/liadn7)**
+
+**[@authors avielc11](https://github.com/avielc11)**
